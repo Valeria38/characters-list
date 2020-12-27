@@ -1,0 +1,19 @@
+.autocomplete {
+  width: 300px;
+  border: 1px solid pink;
+}
+
+.autocomplete--input {
+  width: 100%;
+}
+
+.autocomplete--list {
+  width: 100;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete--option {
+  border: 1px solid blue;
+  cursor: pointer;
+}

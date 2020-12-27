@@ -6,7 +6,8 @@
     "rules": {
         "react/react-in-jsx-scope": "warn",
         "react/jsx-filename-extension": "warn",
-        "react/jsx-props-no-spreading": "warn"
+        "react/jsx-props-no-spreading": "warn",
+        "react/react-in-jsx-scope": "off",
     },
     "globals": {
         "window": true,
