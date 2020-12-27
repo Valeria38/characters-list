@@ -11,12 +11,12 @@ const SignIn = ({ history }) => {
   const isSignedIn = useSelector(getSignInStatus);
 
   const responseFacebook = (response) => {
-    console.log(response);
+    // console.log(response);
     dispatch(setSignInData(response));
   };
 
   useEffect(() => {
-    isSignedIn && history.push('/cabinet');
+    isSignedIn && history.push('/people');
   }, [isSignedIn]);
 
   return (

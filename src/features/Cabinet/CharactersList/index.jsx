@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { statuses } from 'Constants';
@@ -9,6 +10,7 @@ import Character from 'features/Cabinet/CharactersList/components/Character';
 const CharactersList = () => {
   const characters = useSelector(getCharacters);
   const status = useSelector(getCharactersStatus);
+  console.log('characters', characters);
   return (
     <div>
       {status === statuses.loading
@@ -18,4 +20,4 @@ const CharactersList = () => {
   );
 };
 
-export default CharactersList;
+export default memo(CharactersList);

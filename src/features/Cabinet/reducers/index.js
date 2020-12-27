@@ -2,11 +2,13 @@ import { handleActions } from 'redux-actions';
 
 import { statuses } from 'Constants';
 
-import { setCharacters, setCharactersStatus } from 'features/Cabinet/actions';
+import { setCharacters, setCharactersStatus, setCharacter, setCharacterStatus } from 'features/Cabinet/actions';
 
 const cabinetState = {
   characters: [],
   status: statuses.none,
+  character: {},
+  characterStatus: statuses.none,
 };
 
 const cabinet = handleActions(
@@ -18,6 +20,14 @@ const cabinet = handleActions(
     [setCharactersStatus]: (state, { payload }) => ({
       ...state,
       status: payload,
+    }),
+    [setCharacter]: (state, { payload }) => ({
+      ...state,
+      character: payload,
+    }),
+    [setCharacterStatus]: (state, { payload }) => ({
+      ...state,
+      characterStatus: payload,
     }),
   },
   cabinetState

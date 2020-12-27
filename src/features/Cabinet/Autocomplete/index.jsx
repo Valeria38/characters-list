@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { getRouteName } from 'helpers/getRouteName';
 
 import './styles.scss';
 
@@ -15,12 +18,14 @@ const Autocomplete = ({ options }) => {
 
   return (
     <div className="autocomplete">
-      <input className="autocomplete--input" placeholder="Type to search" onChange={handleChange} />
+      <input className="autocomplete--input" placeholder="Type to search" value={value} onChange={handleChange} />
       <ul className="autocomplete--list">
         {suggestions.map((suggestion) => (
-          <li className="autocomplete--option" key={suggestion.name}>
-            {suggestion.name}
-          </li>
+          <NavLink to={`/people/${getRouteName(suggestion.name)}`}>
+            <li className="autocomplete--option" key={suggestion.name}>
+              {suggestion.name}
+            </li>
+          </NavLink>
         ))}
       </ul>
     </div>
