@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CharactersList from 'features/Cabinet/CharactersList';
 import Autocomplete from 'features/Cabinet/Autocomplete';
+import Header from 'features/Cabinet/components/Header';
 
 import { getCharacters } from 'features/Cabinet/actions';
 import { getCharacters as getCharactersSelector } from 'features/Cabinet/selectors';
@@ -16,10 +17,11 @@ const Cabinet = () => {
   }, []);
 
   return (
-    <div>
+    <>
+      <Header />
       <Autocomplete options={characters} />
       <CharactersList />
-    </div>
+    </>
   );
 };
 

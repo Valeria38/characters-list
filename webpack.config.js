@@ -22,6 +22,7 @@ module.exports = {
       store: path.resolve(__dirname, 'src/store'),
       hooks: path.resolve(__dirname, 'src/hooks/'),
       helpers: path.resolve(__dirname, 'src/helpers/'),
+      theme: path.resolve(__dirname, 'src/theme/'),
       customPropTypes: path.resolve(__dirname, 'src/customPropTypes'),
     },
   },

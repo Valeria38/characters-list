@@ -10,7 +10,7 @@ import Character from 'features/Cabinet/CharactersList/components/Character';
 const CharactersList = () => {
   const characters = useSelector(getCharacters);
   const status = useSelector(getCharactersStatus);
-  console.log('characters', characters);
+
   return (
     <div>
       {status === statuses.loading

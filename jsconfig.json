@@ -18,6 +18,8 @@
       "customPropTypes": ["customPropTypes"],
       "customPropTypes/*": ["customPropTypes/*"],
       "hooks": ["hooks"],
+      "theme": ["theme/"],
+      "theme/*": ["theme/*"],
     }
   },
   "exclude": ["node_modules", "build"]

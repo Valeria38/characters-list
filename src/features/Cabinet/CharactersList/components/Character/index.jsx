@@ -16,6 +16,7 @@ const Character = ({
   homeworld,
   vehicles,
   films,
+  url,
 }) => {
   return (
     <NavLink to={`/people/${getRouteName(name)}`}>
@@ -31,6 +32,7 @@ const Character = ({
         <li>homeworld: {homeworld}</li>
         <li>vehicles: {vehicles}</li>
         <li>films: {films}</li>
+        <li>url: {url}</li>
       </ul>
     </NavLink>
   );
