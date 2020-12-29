@@ -1,36 +1,43 @@
+import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
+
+import character from 'features/Cabinet/CharacterProfile/reducers';
 
 import { statuses } from 'Constants';
 
-import { setCharacters, setCharactersStatus, setCharacter, setCharacterStatus } from 'features/Cabinet/actions';
+import { setCharacters, setCharactersStatus, setHomeworld } from 'features/Cabinet/actions';
 
-const cabinetState = {
+const charactersState = {
   characters: [],
   status: statuses.none,
-  character: {},
-  characterStatus: statuses.none,
 };
 
-const cabinet = handleActions(
+const characters = handleActions(
   {
-    [setCharacters]: (state, { payload }) => ({
-      ...state,
-      characters: payload,
-    }),
+    [setCharacters]: (state, { payload }) => {
+      return {
+        ...state,
+        characters: payload,
+      };
+    },
     [setCharactersStatus]: (state, { payload }) => ({
       ...state,
       status: payload,
     }),
-    [setCharacter]: (state, { payload }) => ({
-      ...state,
-      character: payload,
-    }),
-    [setCharacterStatus]: (state, { payload }) => ({
-      ...state,
-      characterStatus: payload,
-    }),
+    [setHomeworld]: (state, { payload: { name, fieldName } }) => {
+      const character = state.characters.find((character) => character.name === fieldName);
+      character.homeworld = name;
+      const characterIndex = state.characters.indexOf(character);
+      const newCharacters = [...state.characters];
+      newCharacters[characterIndex] = character;
+
+      return {
+        ...state,
+        characters: newCharacters,
+      };
+    },
   },
-  cabinetState
+  charactersState
 );
 
-export default cabinet;
+export default combineReducers({ characters, character });

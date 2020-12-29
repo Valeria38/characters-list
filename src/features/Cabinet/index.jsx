@@ -8,6 +8,8 @@ import Header from 'features/Cabinet/components/Header';
 import { getCharacters } from 'features/Cabinet/actions';
 import { getCharacters as getCharactersSelector } from 'features/Cabinet/selectors';
 
+import './styles.scss';
+
 const Cabinet = () => {
   const dispatch = useDispatch();
   const characters = useSelector(getCharactersSelector);
@@ -17,11 +19,13 @@ const Cabinet = () => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <Autocomplete options={characters} />
-      <CharactersList />
-    </>
+    <div className="cabinet">
+      <div className="shadow">
+        <Header />
+        <Autocomplete options={characters} />
+        <CharactersList />
+      </div>
+    </div>
   );
 };
 

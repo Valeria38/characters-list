@@ -1,24 +1,22 @@
-import { useDispatch } from 'react-redux';
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
 
-import { logOut } from 'features/SignIn/actions';
+import { getSignInData } from 'features/SignIn/selectors';
 
 import './styles.scss';
 
 const Header = () => {
-  const dispatch = useDispatch();
-
-  const handleLogOut = () => {
-    dispatch(logOut());
-  };
-
+  const { name, email } = useSelector(getSignInData);
   return (
     <header className="header">
-      Header
-      <span className="header--logout" onClick={handleLogOut}>
-        Log out
-      </span>
+      <div className="header--container">
+        <div className="header--userinfo">
+          <div>{name}</div>
+          <div>{email}</div>
+        </div>
+      </div>
     </header>
   );
 };
 
-export default Header;
+export default memo(Header);

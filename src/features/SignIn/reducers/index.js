@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { setSignInData, setSignInError, logOut } from 'features/SignIn/actions';
+import { setSignInData, setSignInError } from 'features/SignIn/actions';
 
 const signInState = {
   isSignedIn: false,
@@ -26,12 +26,6 @@ const signIn = handleActions(
     [setSignInError]: (state, { payload: { error } }) => ({
       ...state,
       error,
-    }),
-    [logOut]: (state) => ({
-      ...state,
-      isSignedIn: false,
-      name: '',
-      email: '',
     }),
   },
   signInState

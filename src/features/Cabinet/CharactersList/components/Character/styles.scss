@@ -1,4 +1,15 @@
+@import 'theme/colors.scss';
+
 .list-character {
+  width: 100%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: auto;
   cursor: pointer;
-  background: cornflowerblue;
+  border-radius: 5px;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
 }

@@ -8,12 +8,14 @@ import CharacterProfile from 'features/Cabinet/CharacterProfile';
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path="/sign-in" component={SignIn} />
-      <ProtectedRoute exact path="/people" component={Cabinet} />
-      <ProtectedRoute exact path="/people/:name" component={CharacterProfile} />
-      <Route path="*" component={NotFound} />
-    </Switch>
+    <>
+      <Switch>
+        <Route exact path="/sign-in" component={SignIn} />
+        <ProtectedRoute exact path="/people" component={Cabinet} />
+        <ProtectedRoute exact path="/people/:name" component={CharacterProfile} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </>
   );
 };
 

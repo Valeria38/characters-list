@@ -1,52 +1,49 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { getCharacter } from 'features/Cabinet/actions';
-import { getCharacter as getCharacterSelector, getCharacterStatus } from 'features/Cabinet/selectors';
+import Header from 'features/Cabinet/components/Header';
+import Vehicles from 'features/Cabinet/CharacterProfile/components/Vehicles';
+import Films from 'features/Cabinet/CharacterProfile/components/Films';
+import Homeworld from 'features/Cabinet/CharacterProfile/components/Homeworld';
 
-import { getFirstName } from 'helpers/getFirstName';
+import { getCharacter as getCharacterSelector, getCharacterStatus } from 'features/Cabinet/CharacterProfile/selectors';
 
 import './styles.scss';
-import { statuses } from 'Constants';
+import { statuses, characterFields } from 'Constants';
 
-const CharacterProfile = ({ location: { pathname } }) => {
-  const dispatch = useDispatch();
-  const {
-    name,
-    height,
-    mass,
-    hair_color,
-    skin_color,
-    eye_color,
-    birth_year,
-    gender,
-    homeworld,
-    vehicles,
-    films,
-  } = useSelector(getCharacterSelector);
+const CharacterProfile = () => {
+  const character = useSelector(getCharacterSelector);
   const status = useSelector(getCharacterStatus);
 
-  useEffect(() => {
-    dispatch(getCharacter(getFirstName(pathname)));
-  }, []);
+  const renderDataJSX = (key, value) => {
+    switch (key) {
+      case 'name':
+        return <h2>{value}</h2>;
+      case 'vehicles':
+        return <Vehicles vehicles={character.vehicles} />;
+      case 'films':
+        return <Films films={character.films} />;
+      case 'homeworld':
+        return <Homeworld homeworld={character.homeworld} name={character.name} />;
+      default:
+        return `${characterFields[key]}: ${value}`;
+    }
+  };
 
-  return status === statuses.success ? (
-    <div className="characters-profile">
-      <div>Profile page</div>
-      <div>name: {name}</div>
-      <div>height: {height}</div>
-      <div>mass: {mass}</div>
-      <div>hair_color: {hair_color}</div>
-      <div>skin_color: {skin_color}</div>
-      <div>eye_color: {eye_color}</div>
-      <div>birth_year: {birth_year}</div>
-      <div>gender: {gender}</div>
-      <div>homeworld: {homeworld}</div>
-      <div>vehicles: {vehicles}</div>
-      <div>films: {films}</div>
+  return (
+    <div className="cabinet">
+      <div className="shadow">
+        <Header />
+        {status === statuses.success ? (
+          <div className="characters-profile">
+            {Object.entries(character).map(([key, value]) =>
+              value && value.length ? <div key={key}>{renderDataJSX(key, value)}</div> : null
+            )}
+          </div>
+        ) : (
+          <div>loading...</div>
+        )}
+      </div>
     </div>
-  ) : (
-    <div>loading...</div>
   );
 };
 
