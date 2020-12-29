@@ -5,7 +5,7 @@ import character from 'features/Cabinet/CharacterProfile/reducers';
 
 import { statuses } from 'Constants';
 
-import { setCharacters, setCharactersStatus, setHomeworld, setTotal } from 'features/Cabinet/actions';
+import { setCharacters, setCharactersStatus, setHomeworld, setTotal, setIsLiked } from 'features/Cabinet/actions';
 
 const charactersState = {
   characters: [],
@@ -41,6 +41,19 @@ const characters = handleActions(
       ...state,
       total: payload,
     }),
+    [setIsLiked]: (state, { payload }) => {
+      const character = state.characters.find((character) => character.name === payload);
+      localStorage.setItem(character.name, !localStorage.getItem(character.name) ? 'isLiked' : '');
+      character.isLiked = !character.isLiked;
+      const characterIndex = state.characters.indexOf(character);
+      const newCharacters = [...state.characters];
+      newCharacters[characterIndex] = character;
+
+      return {
+        ...state,
+        characters: newCharacters,
+      };
+    },
   },
   charactersState
 );

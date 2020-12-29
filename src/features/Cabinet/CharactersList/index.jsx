@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { statuses } from 'Constants';
@@ -10,30 +10,21 @@ import { getCharacters as getCharactersSelector, getCharactersStatus, getTotal }
 import Character from 'features/Cabinet/CharactersList/components/Character';
 import Pagination from 'features/Cabinet/CharactersList/components/Pagination';
 
+import usePagination from 'hooks/usePagination';
+
 import './styles.scss';
 
-const usePagination = (defaultPage) => {
-  const dispatch = useDispatch();
-  const [page, setPage] = useState(defaultPage);
-
-  const handleChange = (newPage) => {
-    console.log('new page', newPage);
-    setPage(newPage);
-    dispatch(getCharacters(newPage));
-  };
-
-  return {
-    page,
-    handleChange,
-  };
-};
-
 const CharactersList = () => {
+  const dispatch = useDispatch();
   const characters = useSelector(getCharactersSelector);
   const total = useSelector(getTotal);
   const status = useSelector(getCharactersStatus);
 
-  const { page, handleChange } = usePagination(1);
+  const { page, handleChange } = usePagination(1, getCharacters);
+
+  useEffect(() => {
+    dispatch(getCharacters(1));
+  }, []);
 
   return (
     <>

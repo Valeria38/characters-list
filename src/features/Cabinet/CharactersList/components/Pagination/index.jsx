@@ -9,7 +9,6 @@ import './styles.scss';
 
 const Pagination = ({ total, page, onChange }) => {
   const pagesCount = Math.ceil(total / ITEMS_PER_PAGE);
-  console.log(page);
   const handlePrev = () => {
     page - 1 > 0 && onChange(page - 1);
   };

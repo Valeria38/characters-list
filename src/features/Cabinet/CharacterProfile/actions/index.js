@@ -7,6 +7,7 @@ export const setCharacter = createAction('SET_CHARACTER', (data) => data);
 export const setHomeworld = createAction('SET_CHARACTER_HOMEWORLD', (data) => data);
 export const setVehicles = createAction('SET_VEHICLES', (data) => data);
 export const setFilms = createAction('SET_FILMS', (data) => data);
+export const setIsLiked = createAction('SET_IS_LIKED_PROFILE');
 
 export const getCharacter = (url) => (dispatch) => {
   dispatch(setCharacterStatus(statuses.loading));

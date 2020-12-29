@@ -8,6 +8,7 @@ import {
   setHomeworld,
   setVehicles,
   setFilms,
+  setIsLiked,
 } from 'features/Cabinet/CharacterProfile/actions';
 
 const characterState = {
@@ -41,6 +42,13 @@ const character = handleActions(
       return {
         ...state,
         character: { ...state.character, films: payload },
+      };
+    },
+    [setIsLiked]: (state) => {
+      localStorage.setItem(state.character.name, !localStorage.getItem(state.character.name) ? 'isLiked' : '');
+      return {
+        ...state,
+        character: { ...state.character, isLiked: !state.character.isLiked },
       };
     },
   },

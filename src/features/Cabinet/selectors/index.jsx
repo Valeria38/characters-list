@@ -17,6 +17,7 @@ export const getCharacters = createSelector(characters, (state) =>
       vehicles,
       films,
       url,
+      isLiked,
     }) => ({
       name,
       height,
@@ -30,6 +31,7 @@ export const getCharacters = createSelector(characters, (state) =>
       vehicles,
       films,
       url,
+      isLiked,
     })
   )
 );

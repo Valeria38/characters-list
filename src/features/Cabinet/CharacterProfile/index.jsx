@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 import Header from 'features/Cabinet/components/Header';
 import Vehicles from 'features/Cabinet/CharacterProfile/components/Vehicles';
@@ -7,12 +8,22 @@ import Homeworld from 'features/Cabinet/CharacterProfile/components/Homeworld';
 
 import { getCharacter as getCharacterSelector, getCharacterStatus } from 'features/Cabinet/CharacterProfile/selectors';
 
-import './styles.scss';
+import { setIsLiked } from 'features/Cabinet/CharacterProfile/actions';
+
+import Heart from 'images/heart.svg';
+import OutlinedHeart from 'images/outlinedHeart.svg';
+
 import { statuses, characterFields } from 'Constants';
 
+import './styles.scss';
+
 const CharacterProfile = () => {
+  const dispatch = useDispatch();
+
   const character = useSelector(getCharacterSelector);
   const status = useSelector(getCharacterStatus);
+
+  const isLikedStorage = !!localStorage.getItem(character.name);
 
   const renderDataJSX = (key, value) => {
     switch (key) {
@@ -29,12 +40,23 @@ const CharacterProfile = () => {
     }
   };
 
+  const toggleLike = () => {
+    dispatch(setIsLiked());
+  };
+
   return (
     <div className="cabinet">
       <div className="shadow">
         <Header />
         {status === statuses.success ? (
           <div className="characters-profile">
+            <div className="characters-profile-icon-wrapper" onClick={toggleLike}>
+              {isLikedStorage ? (
+                <Heart className={classNames('characters-profile--icon', { active: isLikedStorage })} />
+              ) : (
+                <OutlinedHeart className="characters-profile--icon" />
+              )}
+            </div>
             {Object.entries(character).map(([key, value]) =>
               value && value.length ? <div key={key}>{renderDataJSX(key, value)}</div> : null
             )}

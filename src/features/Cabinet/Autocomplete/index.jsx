@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { getRouteName } from 'helpers/getRouteName';
 import { getCharacterName } from 'helpers/getName.js';
 
+import { getCharacters as getCharactersSelector } from 'features/Cabinet/selectors';
+
 import { getSearchCharacter } from 'features/Cabinet/CharacterProfile/actions';
 
 import './styles.scss';
 
-const Autocomplete = ({ options }) => {
+const Autocomplete = () => {
   const dispatch = useDispatch();
+  const options = useSelector(getCharactersSelector);
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 

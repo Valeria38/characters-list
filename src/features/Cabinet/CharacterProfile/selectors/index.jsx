@@ -15,6 +15,7 @@ export const getCharacter = createSelector(character, (state) => {
     homeworld,
     vehicles,
     films,
+    isLiked,
   } = state.character;
 
   return {
@@ -29,6 +30,7 @@ export const getCharacter = createSelector(character, (state) => {
     homeworld,
     vehicles,
     films,
+    isLiked,
   };
 });
 
