@@ -15,7 +15,7 @@ const Cabinet = () => {
   const characters = useSelector(getCharactersSelector);
 
   useEffect(() => {
-    dispatch(getCharacters());
+    dispatch(getCharacters(1));
   }, []);
 
   return (

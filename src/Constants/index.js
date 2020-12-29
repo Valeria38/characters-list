@@ -17,3 +17,5 @@ export const characterFields = {
   vehicles: 'Vehicles',
   films: 'Films',
 };
+
+export const ITEMS_PER_PAGE = 10;

@@ -5,11 +5,12 @@ import character from 'features/Cabinet/CharacterProfile/reducers';
 
 import { statuses } from 'Constants';
 
-import { setCharacters, setCharactersStatus, setHomeworld } from 'features/Cabinet/actions';
+import { setCharacters, setCharactersStatus, setHomeworld, setTotal } from 'features/Cabinet/actions';
 
 const charactersState = {
   characters: [],
   status: statuses.none,
+  total: 0,
 };
 
 const characters = handleActions(
@@ -36,6 +37,10 @@ const characters = handleActions(
         characters: newCharacters,
       };
     },
+    [setTotal]: (state, { payload }) => ({
+      ...state,
+      total: payload,
+    }),
   },
   charactersState
 );

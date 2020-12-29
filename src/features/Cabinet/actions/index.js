@@ -9,13 +9,15 @@ export const setCharacter = createAction('SET_CHARACTER', (data) => data);
 export const setHomeworld = createAction('SET_HOMEWORLD', (data) => data);
 export const setVehicles = createAction('SET_VEHICLES', (data) => data);
 export const setFilms = createAction('SET_FILMS', (data) => data);
+export const setTotal = createAction('SET_TOTAL', (total) => total);
 
-export const getCharacters = () => (dispatch) => {
+export const getCharacters = (page) => (dispatch) => {
   dispatch(setCharactersStatus(statuses.loading));
-  fetch(`${process.env.API_URL}people`)
+  fetch(`${process.env.API_URL}people?page=${page}`)
     .then((res) => res.json())
-    .then(({ results }) => {
-      dispatch(setCharacters(results));
+    .then((data) => {
+      dispatch(setCharacters(data.results));
+      dispatch(setTotal(data.count));
       dispatch(setCharactersStatus(statuses.success));
     });
 };
