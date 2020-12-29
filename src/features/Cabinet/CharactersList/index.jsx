@@ -14,7 +14,7 @@ import usePagination from 'hooks/usePagination';
 
 import './styles.scss';
 
-const CharactersList = () => {
+const CharactersList = ({ onlyLiked }) => {
   const dispatch = useDispatch();
   const characters = useSelector(getCharactersSelector);
   const total = useSelector(getTotal);
