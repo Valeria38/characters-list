@@ -1,0 +1,49 @@
+@import 'theme/colors.scss';
+
+.header {
+  height: 60px;
+}
+
+.header--container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 2px solid $white;
+  font-size: 14px;
+}
+
+.header--userinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header--icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  fill: $blue;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    fill: $red;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  left: -170px;
+  min-width: 170px;
+  display: none;
+  font-size: 12px;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  &:hover .tooltip {
+    display: block;
+  }
+}

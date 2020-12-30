@@ -1,14 +1,21 @@
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-// import store from 'store';
+import App from 'features/App';
+
+import store from 'store';
 
 import 'normalize.css';
 import './styles.scss';
 
-const App = () => (
-   <div>App</div>
+const Root = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 /* eslint-disable no-undef */
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Root />, document.querySelector('#root'));
