@@ -89,7 +89,7 @@ module.exports = {
   ],
   devServer: {
     open: true,
-    https: true,
+    // https: true,
     hot: true,
     before: function (app) {
       app.get('/', function (req, res) {
